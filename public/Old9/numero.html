@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Número do Chá do Levi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/script.js" defer></script>
+  </head>
+
+  <body
+    class="flex flex-col min-h-screen bg-gradient-to-b from-blue-50 to-blue-100 text-center"
+  >
+    <!-- Cabeçalho -->
+    <header class="pt-8">
+      <h1 class="text-3xl font-bold text-blue-700">Chá de Bebê do Levi 💙</h1>
+    </header>
+
+    <main class="flex-1 flex flex-col items-center justify-center p-4">
+      <!-- Etapa 1 - Itens -->
+      <section id="step1" class="flex flex-col items-center space-y-4">
+        <h2
+          id="numLabel"
+          class="text-2xl font-semibold text-blue-800 mb-2 tracking-wide"
+        ></h2>
+        <div
+          id="itemDesc"
+          class="text-base text-gray-700 bg-white p-4 rounded-xl shadow-sm w-80"
+        >
+          Carregando itens...
+        </div>
+
+        <div class="flex justify-center space-x-4 mt-6">
+          <button
+            id="confirmBtn"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md shadow font-semibold transition"
+          >
+            Confirmar presença
+          </button>
+
+        </div>
+      </section>
+
+      <!-- Etapa 2 - Nome -->
+      <section id="step2" class="hidden flex flex-col items-center space-y-4">
+        <h2
+          id="numTitle"
+          class="text-2xl font-semibold text-blue-800 mb-2 tracking-wide"
+        ></h2>
+        <p class="text-gray-600 text-base">Digite seu nome para confirmar:</p>
+<form autocomplete="off" onsubmit="return false;">
+  <input
+    id="guestName"
+    type="text"
+    placeholder="Seu nome"
+    autocomplete="off"
+    class="border border-blue-300 rounded-md px-4 py-2 w-64 text-center text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+  />
+</form>
+
+        <button
+          id="finalConfirmBtn"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2 rounded-md shadow font-semibold transition"
+        >
+          Enviar confirmação
+        </button>
+      </section>
+
+      <!-- Etapa 3 - Confirmação -->
+<section
+  id="confirmFull"
+  class="hidden opacity-0 transition-opacity duration-700 flex flex-col items-center justify-center text-center"
+>
+  <h2 class="text-2xl font-bold text-emerald-700 mb-3">
+    Presença confirmada! 💙
+  </h2>
+  <p class="text-gray-700 text-base leading-relaxed mb-6 max-w-xs">
+    Você receberá mais informações no WhatsApp.<br />
+    Escolha mais números e abençoe o Levizinho 💙
+  </p>
+  <div class="flex space-x-4 mt-4">
+    <button
+      id="moreBtn"
+      class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-md font-semibold text-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-300 transition"
+    >
+      <span aria-hidden="true" class="inline-block mr-2">➕</span>
+      Quero dar mais pro Levi
+    </button>
+    <button
+      id="closeBtn"
+      class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3 rounded-md font-semibold text-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition"
+    >
+      <span aria-hidden="true" class="inline-block mr-2">❌</span>
+      Fechar
+    </button>
+  </div>
+</section>
+
+    </main>
+
+    <footer class="text-gray-400 text-sm pb-4">
+      Chá de Bebê do Levi — 2025
+    </footer>
+  </body>
+</html>

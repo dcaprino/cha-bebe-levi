@@ -232,6 +232,30 @@ app.post("/api/release", (req, res) => {
   res.json({ ok: true });
 });
 
+// === KITS (lido do arquivo) ================================================
+app.get("/api/kits", (req, res) => {
+  try {
+    const tryPaths = [
+      path.join(__dirname, "public", "KITS.json"),
+      path.join(__dirname, "KITS.json"),
+    ];
+    let raw = null;
+    for (const p of tryPaths) {
+      if (fs.existsSync(p)) { raw = fs.readFileSync(p, "utf8"); break; }
+    }
+    if (!raw) return res.json([]);
+    const arr = JSON.parse(raw); // formato: [{numero, descricao}, ...]
+    const kits = arr.map((k, i) => ({
+      id: (k.numero ?? i + 1),
+      label: String(k.numero ?? i + 1).padStart(3, "0"),
+      description: k.descricao || k.description || ""
+    }));
+    res.json(kits);
+  } catch (e) {
+    console.error("[/api/kits] erro:", e);
+    res.status(500).json([]);
+  }
+});
 
 
 // ======== INÍCIO SERVIDOR ===================================================

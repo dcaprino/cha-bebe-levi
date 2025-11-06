@@ -257,6 +257,32 @@ app.get("/api/kits", (req, res) => {
   }
 });
 
+// === POPULAR BANCO AUTOMATICAMENTE COM BASE NO KITS =========================
+try {
+  const kitsPath = path.join(__dirname, "public", "KITS.json");
+  if (fs.existsSync(kitsPath)) {
+    const kits = JSON.parse(fs.readFileSync(kitsPath, "utf8"));
+    const count = db.prepare("SELECT COUNT(*) AS c FROM numbers").get().c;
+    if (count === 0) {
+      const insert = db.prepare(
+        "INSERT INTO numbers(label,status,items_json) VALUES(?,?,?)"
+      );
+      for (const kit of kits) {
+        const label = String(kit.numero).padStart(3, "0");
+        const item = JSON.stringify({ description: kit.descricao });
+        insert.run(label, "free", item);
+      }
+      console.log(`[INIT] Banco populado automaticamente com ${kits.length} números.`);
+    } else {
+      console.log(`[INIT] Banco já contém ${count} registros, sem necessidade de popular.`);
+    }
+  } else {
+    console.log("[INIT] KITS.json não encontrado em /public.");
+  }
+} catch (e) {
+  console.error("[INIT] Erro ao popular banco automaticamente:", e);
+}
+
 
 // ======== INÍCIO SERVIDOR ===================================================
 app.listen(PORT, () => {
